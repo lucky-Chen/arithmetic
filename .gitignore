@@ -1,0 +1,8 @@
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.filters
+*.vcxproj
+/debug
+/Arithmetic/Debug
