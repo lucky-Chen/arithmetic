@@ -1,7 +1,7 @@
 #ifndef _TREE_2X_H_
 #define _TREE_2X_H_
-#include "head.h"
 
+#include<queue>
 template <typename T>
 struct Node
 {

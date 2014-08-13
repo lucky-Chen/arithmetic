@@ -1,6 +1,7 @@
 #include "head.h"
 #include "MySort.cpp"
 #include "Tree_2x.cpp"
+#include  "MyHeap.cpp"
 
 void testQuickSort(int *dataList, int length)
 {

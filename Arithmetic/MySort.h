@@ -1,6 +1,5 @@
 #ifndef _MYSORT_H_
 #define _MYSORT_H_
-#include "head.h"
 
 template <typename  T>
 
