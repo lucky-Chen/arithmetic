@@ -1,10 +1,14 @@
 #ifndef _MYSORT_H_
 #define _MYSORT_H_
 
+#include <iostream>
+using namespace std;
+
 template <typename  T>
 
 class MySort{
 public :
+
 	//快排
 	void quickSort(T *dataList,  int left, int right);
 	//直接插入排序
@@ -18,8 +22,6 @@ protected:
 	//归并排序部分操作
 	void mergeArray(T *dataList, int left, int mid, int right, T *tmp);
 	void merge(T *dataList, int left, int right, T *tmp);
-
-
 
 };
 #endif

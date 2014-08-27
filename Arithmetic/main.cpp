@@ -1,7 +1,15 @@
 #include "head.h"
-#include "MySort.cpp"
-#include "Tree_2x.cpp"
-#include  "MyHeap.cpp"
+
+
+void coutList(int *dataList, int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << dataList[i];
+		cout << "  ";
+	}
+	cout << endl;
+}
 
 void testQuickSort(int *dataList, int length)
 {
@@ -24,7 +32,7 @@ bool testMergeSort(int *dataLis, int length)
 	return sort_my.mergeSort(dataLis, length);
 }
 
- Node<int>* getNodes()
+Node<int>* getNodes()
 {
 	static Node<int> *root = new Node<int>();
 	static Node<int> *node1_1 = new Node<int>();
@@ -49,7 +57,7 @@ bool testMergeSort(int *dataLis, int length)
 	node2_3->data = &data_2_3;
 	node2_4->data = &data_2_4;
 	node1_1->data = &data_1_1;
-	
+
 	root->leftChild = node1_1;
 	root->rightChild = node1_2;
 	node1_1->leftChild = node2_1;
@@ -75,14 +83,40 @@ void testBFS()
 	tree.BFS(node);
 	delete[] node;
 }
-
-int  main()
+void testHeap()
 {
 	int  testIntArray[] = { 1, 2, 4, 0, 7, 3, 4, 1, 3, 6, 7, 67 };
 	int length = sizeof(testIntArray) / sizeof(int);
 
-	testBFS();
+	MyHeap<int> heap;
+	heap.makeMinHeap(testIntArray, length);
+	cout << "make MinHeap : \t";
+	coutList(testIntArray,length);
+	//heap.heapMinSort(testIntArray, length);
+	heap.delMinHeapData(testIntArray,length);
+	cout << "sort result : \t";
+	coutList(testIntArray, length);
+	
+}
+//²âÊÔÁ´±í
+void testLinkList()
+{
+	
+	LinkNode<int> *head = new LinkNode<int>();
+	MyLinkList<int> link(head);
+	int array[100];
+	for (int i = 0; i < 100; i++){
+		array[i] = i;
+		link.insertData(link.getFoot(), &array[i]);
+	}
+	head->data = &array[99];
+	link.countLink();
 
+}
+int  main()
+{
+	testLinkList();
+	//testHeap();
 	system("pause");
 	return 0;
 }

@@ -1,3 +1,4 @@
+
 #include "MySort.h"
 
 //¿ìËÙÅÅĞò
@@ -150,3 +151,4 @@ void MySort<typename T>::mergeArray(T* dataList, int left, int mid,int right, T*
 		dataList[left + i] = tmp[i];
 	}
 }
+
