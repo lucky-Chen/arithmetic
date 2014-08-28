@@ -3,7 +3,7 @@
 
 //快速排序
 template <typename  T>
-void MySort<typename T>::quickSort(T *dataList, int left, int right)
+void MySort<T>::quickSort(T *dataList, int left, int right)
 {
 	T baseData = dataList[left];
 
@@ -43,7 +43,7 @@ void MySort<typename T>::quickSort(T *dataList, int left, int right)
 
 //直接插入排序
 template <typename T>
-void MySort<typename T>::insertSort(T *dataList, int lenth)
+void MySort<T>::insertSort(T *dataList, int lenth)
 {
 	for (int indexOfDisOrder = 1; indexOfDisOrder < lenth; indexOfDisOrder++)
 	{
@@ -69,7 +69,7 @@ void MySort<typename T>::insertSort(T *dataList, int lenth)
 }
 //希尔排序
 template<typename T>
-void MySort<typename T>::shellSort(T *dataList, int length)
+void MySort<T>::shellSort(T *dataList, int length)
 {
 
 	for (int gap = length / 2; gap > 0; gap /= 2)
@@ -94,7 +94,7 @@ void MySort<typename T>::shellSort(T *dataList, int length)
 }
 //归并排序
 template<typename T>
-bool  MySort<typename T>::mergeSort(T *dataList, int length)
+bool  MySort<T>::mergeSort(T *dataList, int length)
 {
 	T *tmp = new T[length];
 	if (tmp == NULL)
@@ -109,7 +109,7 @@ bool  MySort<typename T>::mergeSort(T *dataList, int length)
 }
 //归并操作
 template <typename T>
-void MySort<typename T>::merge(T *dataList, int left, int right, T *tmp)
+void MySort<T>::merge(T *dataList, int left, int right, T *tmp)
 {
 	if (left < right)
 	{
@@ -122,7 +122,7 @@ void MySort<typename T>::merge(T *dataList, int left, int right, T *tmp)
 
 //归并排序中的合并数组
 template<typename T>
-void MySort<typename T>::mergeArray(T* dataList, int left, int mid,int right, T* tmp)
+void MySort<T>::mergeArray(T* dataList, int left, int mid,int right, T* tmp)
 {
 	int tmpLeft = left, tmpRight = mid + 1, tmpIndex = 0;
 	while ( tmpLeft <= mid && tmpRight <= right)

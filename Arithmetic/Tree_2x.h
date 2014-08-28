@@ -1,6 +1,10 @@
 #ifndef _TREE_2X_H_
 #define _TREE_2X_H_
 
+/*
+*  二叉树 类
+*  树类算法相关
+*/
 #include<queue>
 template <typename T>
 struct Node
@@ -23,7 +27,7 @@ public:
 	void DFS(Node<T>* node);
 	void BFS(Node<T>* node);
 
-private:
+
 
 };
 #endif

@@ -9,7 +9,7 @@
 
 
 template <typename T>
-void MyHeap<typename T>::makeMinHeap(T *dataList, int length)
+void MyHeap<T>::makeMinHeap(T *dataList, int length)
 {
 	int indexWithChild = (length - 1) / 2 - 1;
 	for (; indexWithChild >= 0 ; indexWithChild--)
@@ -23,14 +23,14 @@ void MyHeap<typename T>::makeMinHeap(T *dataList, int length)
 
 
 template <typename T>
-void MyHeap<typename T>::delMinHeapData(T *dataList, int length)
+void MyHeap<T>::delMinHeapData(T *dataList, int length)
 {
 	swap(dataList, 0,length-1);
 	MinHeapFixdown(dataList, 0, length-1);
 }
 
 template <typename T>
-void MyHeap<typename T>::heapMinSort(T *dataList, int length)
+void MyHeap<T>::heapMinSort(T *dataList, int length)
 {
 	makeMinHeap(dataList, length);
 	for (int i = length - 1; i > 0; i--)
@@ -45,7 +45,7 @@ void MyHeap<typename T>::heapMinSort(T *dataList, int length)
 
 //---------------------------protected---------------------------------
 template <typename T>
-void MyHeap<typename T>::swap(T *dataList,int iFist,int iSecond)
+void MyHeap<T>::swap(T *dataList,int iFist,int iSecond)
 {
 	T tmp = dataList[iFist];
 	dataList[iFist] = dataList[iSecond];
@@ -54,7 +54,7 @@ void MyHeap<typename T>::swap(T *dataList,int iFist,int iSecond)
 
 //（下沉调整）
 template <typename T>
-void MyHeap<typename T>::MinHeapFixdown(T *dataList, int start, int end)
+void MyHeap<T>::MinHeapFixdown(T *dataList, int start, int end)
 {
 	int parentIndex = start;
 	//挖坑
@@ -86,7 +86,7 @@ void MyHeap<typename T>::MinHeapFixdown(T *dataList, int start, int end)
 
 //上浮调整
 template <typename T>
-void MyHeap<typename T>::MinHeapFixup(T *dataList, int currentIndex)
+void MyHeap<T>::MinHeapFixup(T *dataList, int currentIndex)
 {
 	int parentIndex = (currentIndex - 1) / 2;
 	//挖坑

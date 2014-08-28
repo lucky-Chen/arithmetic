@@ -1,6 +1,8 @@
 #ifndef _MYLINKLIST_H_
 #define _MYLINKLIST_H_
-
+/*
+*   基本链表类
+*/
 #include <iostream>
 using namespace std;
 template<typename T>

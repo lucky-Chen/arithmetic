@@ -1,6 +1,8 @@
 #ifndef _MYSORT_H_
 #define _MYSORT_H_
-
+/*
+*    ≈≈–ÚÀ„∑®¿‡
+*/
 #include <iostream>
 using namespace std;
 

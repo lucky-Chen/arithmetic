@@ -1,7 +1,7 @@
 #include "Tree_2x.h"
 
 template <typename T>
-void Tree_2X<typename T>::DFS(Node<T> *node)
+void Tree_2X<T>::DFS(Node<T> *node)
 {
 	if (node == NULL)
 	{
@@ -16,7 +16,7 @@ void Tree_2X<typename T>::DFS(Node<T> *node)
 	
 }
 template <typename T>
-void Tree_2X<typename T>::BFS(Node<T>* node)
+void Tree_2X<T>::BFS(Node<T>* node)
 {
 	int i = 0;
 	queue<Node<T>*> q;

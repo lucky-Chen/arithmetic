@@ -1,5 +1,8 @@
 #ifndef _MYHEAP_H_
 #define _MYHEAP_H_
+/*
+*    ∂—œ‡πÿÀ„∑®
+*/
 template <typename T>
 class MyHeap{
 public:

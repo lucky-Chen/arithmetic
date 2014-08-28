@@ -1,21 +1,21 @@
 #include "MyLinkList.h"
 
 template<typename T>
-MyLinkList<typename T>::MyLinkList(LinkNode<T>* node)
+MyLinkList<T>::MyLinkList(LinkNode<T>* node)
 {
 	head = foot = node;
 	length = 0;
 }
 
 template<typename T>
-MyLinkList<typename T>::~MyLinkList()
+MyLinkList<T>::~MyLinkList()
 {
 	delLink();
 }
 
 //增
 template<typename T>
-bool MyLinkList<typename T>::insertData(LinkNode<T>* preNode, T* data)
+bool MyLinkList<T>::insertData(LinkNode<T>* preNode, T* data)
 {
 	if (preNode==NULL ||data == NULL)
 	{
@@ -35,7 +35,7 @@ bool MyLinkList<typename T>::insertData(LinkNode<T>* preNode, T* data)
 	return true;
 }
 template<typename T>
-bool MyLinkList<typename T>::changeHeadNode(T* data)
+bool MyLinkList<T>::changeHeadNode(T* data)
 {
 	LinkNode<T>* newHeadNode = new LinkNode<T>();
 	newHeadNode->data = data;
@@ -44,25 +44,24 @@ bool MyLinkList<typename T>::changeHeadNode(T* data)
 }
 //删
 template<typename T>
-bool MyLinkList<typename T>::delData(LinkNode<T>* node)
+bool MyLinkList<T>::delData(LinkNode<T>* node)
 { 
-	LinkNode<T>* preNode = head;
 	//头结点
-	if (tmpNode == node)
+	if (head == node)
 	{
 		head = head->next;
-		delete(preNode);
+		delete(node);
 	}
 	//尾节点
 	else if (node == foot)
 	{
-		LinkNode<T> preNode = getNode(getLength() - 2);
+		LinkNode<T> *preNode = getPreNode(foot);
 		foot = preNode;
 		delete(node);
 	}
 	else
 	{
-		preNode = getPreNode(node);
+		LinkNode<T> *preNode = getPreNode(node);
 		preNode->next = node->next;
 		delete(node);
 	}
@@ -71,8 +70,9 @@ bool MyLinkList<typename T>::delData(LinkNode<T>* node)
 }
 //查
 template<typename T>
-int MyLinkList<typename T>::getLength()
+int MyLinkList<T>::getLength()
 {
+	length = 0;
 	LinkNode<T>* tmp = head;
 	while (tmp != NULL)
 	{
@@ -82,16 +82,16 @@ int MyLinkList<typename T>::getLength()
 	return length;
 }
 template<typename T>
-LinkNode<T>* MyLinkList<typename T>::getNode(int i)
+LinkNode<T>* MyLinkList<T>::getNode(int i)
 {
 	//越界
-	if (i>=getLength() || i<0)
+	if (isOverBorder(i))
 	{
 		return NULL;
 	}
 	//未越界
 	LinkNode<T>* tmpNode = head;
-	for (int index = 0; index < i; i++)
+	for (int index = 0; index < i; index++)
 	{
 		tmpNode = tmpNode->next;
 	}
@@ -99,11 +99,11 @@ LinkNode<T>* MyLinkList<typename T>::getNode(int i)
 }
 
 template<typename T>
-LinkNode<T>* MyLinkList<typename T>::getMidNode()
+LinkNode<T>* MyLinkList<T>::getMidNode()
 {
-	LinkNode<T>* fast, *slow;
+	LinkNode<T> *fast, *slow;
 	fast = slow = head;
-	while (fast！=NULL &&fast->next！NULL && fast->next->next!NULL)
+	while (fast !=NULL && fast->next != NULL && fast->next->next != NULL)
 	{
 		slow = slow->next;
 		fast = fast->next->next;
@@ -111,18 +111,18 @@ LinkNode<T>* MyLinkList<typename T>::getMidNode()
 	return slow;
 }
 template<typename T>
-LinkNode<T>* MyLinkList<typename T>::getFoot()
+LinkNode<T>* MyLinkList<T>::getFoot()
 {
 
 	return foot;
 }
 template<typename T>
-LinkNode<T>* MyLinkList<typename T>::getHead()
+LinkNode<T>* MyLinkList<T>::getHead()
 {
 	return head;
 }
 template<typename T>
-LinkNode<T>*  MyLinkList<typename T>::getPreNode(LinkNode<T>* node)
+LinkNode<T>*  MyLinkList<T>::getPreNode(LinkNode<T>* node)
 {
 	//头结点
 	if (head == node)
@@ -133,12 +133,12 @@ LinkNode<T>*  MyLinkList<typename T>::getPreNode(LinkNode<T>* node)
 	{
 		LinkNode<T>* preNode = head;
 		LinkNode<T>* tmpNode = preNode->next;
-		while (tmp != NULL && tmpNode != node)
+		while (tmpNode!=NULL && tmpNode != node)
 		{
 			preNode = preNode->next;
 			tmpNode = preNode->next;
 		}
-		if (tmp == node && node!=NULL)
+		if (tmpNode == node && node != NULL)
 		{
 			return preNode;
 		}
@@ -148,7 +148,7 @@ LinkNode<T>*  MyLinkList<typename T>::getPreNode(LinkNode<T>* node)
 	
 }
 template<typename T>
-void MyLinkList<typename T>::countLink()
+void MyLinkList<T>::countLink()
 {
 	LinkNode<T> *tmp = head;
 	while (tmp != NULL)
@@ -162,7 +162,7 @@ void MyLinkList<typename T>::countLink()
 
 //改
 template<typename T>
-bool MyLinkList<typename T>::updateData(int i, T* data)
+bool MyLinkList<T>::updateData(int i, T* data)
 {
 	if (isOverBorder)
 	{
@@ -175,7 +175,7 @@ bool MyLinkList<typename T>::updateData(int i, T* data)
 
 //回收
 template<typename T>
-void MyLinkList<typename T>::delLink()
+void MyLinkList<T>::delLink()
 {
 	length = 0;
 	while (head != NULL)
@@ -188,7 +188,7 @@ void MyLinkList<typename T>::delLink()
 }
 //---------------------------protected---------------------
 template<typename T>
-bool MyLinkList<typename T>::isOverBorder(int i)
+bool MyLinkList<T>::isOverBorder(int i)
 {
 	if (i<0||i>=length)
 	{

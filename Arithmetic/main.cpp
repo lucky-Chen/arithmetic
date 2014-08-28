@@ -1,6 +1,11 @@
 #include "head.h"
 
 
+int  arrayList[] = { 1, 2, 4, 0, 7, 3, 4, 1, 3, 6, 7, 67 };
+int getArrayLength()
+{
+	return sizeof(arrayList) / sizeof(int);
+}
 void coutList(int *dataList, int length)
 {
 	for (int i = 0; i < length; i++)
@@ -10,6 +15,7 @@ void coutList(int *dataList, int length)
 	}
 	cout << endl;
 }
+
 
 void testQuickSort(int *dataList, int length)
 {
@@ -31,7 +37,27 @@ bool testMergeSort(int *dataLis, int length)
 	MySort<int> sort_my;
 	return sort_my.mergeSort(dataLis, length);
 }
+void testHeap()
+{
 
+	int length = getArrayLength();
+	MyHeap<int> heap;
+	heap.makeMinHeap(arrayList, length);
+	cout << "make MinHeap : \t";
+	coutList(arrayList, length);
+
+	cout << "sort result : \t";
+	heap.heapMinSort(arrayList, length);
+	coutList(arrayList, length);
+
+}
+void testBinarySearch()
+{
+	MySearch<int> search;
+	int arraySort[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	cout << "index " << search.binarySearch(arraySort, 10, 10) << endl;
+
+}
 Node<int>* getNodes()
 {
 	static Node<int> *root = new Node<int>();
@@ -79,24 +105,22 @@ void testBFS()
 {
 	Tree_2X<int> tree;
 	Node<int> *node = getNodes();
-	cout << *(node->data) << endl;
 	tree.BFS(node);
 	delete[] node;
 }
-void testHeap()
+void getSimpleLink(LinkNode<int> *head)
 {
-	int  testIntArray[] = { 1, 2, 4, 0, 7, 3, 4, 1, 3, 6, 7, 67 };
-	int length = sizeof(testIntArray) / sizeof(int);
-
-	MyHeap<int> heap;
-	heap.makeMinHeap(testIntArray, length);
-	cout << "make MinHeap : \t";
-	coutList(testIntArray,length);
-	//heap.heapMinSort(testIntArray, length);
-	heap.delMinHeapData(testIntArray,length);
-	cout << "sort result : \t";
-	coutList(testIntArray, length);
 	
+	static MyLinkList<int> link(head);
+	for (int i = 0; i < getArrayLength(); i++){
+		if (i == 0)
+		{
+			head->data = &arrayList[i];
+			continue;
+		}
+		link.insertData(link.getFoot(), &arrayList[i]);
+	}
+
 }
 //≤‚ ‘¡¥±Ì
 void testLinkList()
@@ -104,19 +128,37 @@ void testLinkList()
 	
 	LinkNode<int> *head = new LinkNode<int>();
 	MyLinkList<int> link(head);
-	int array[100];
-	for (int i = 0; i < 100; i++){
-		array[i] = i;
-		link.insertData(link.getFoot(), &array[i]);
+	for (int i = 0; i < getArrayLength(); i++){
+		if (i == 0)
+		{
+			head->data = &arrayList[i];
+			continue;
+		}
+		link.insertData(link.getFoot(), &arrayList[i]);
 	}
-	head->data = &array[99];
+	
+	cout << "cout linklistData "<<endl;
 	link.countLink();
-
+	cout << "length " << link.getLength()<<endl;
+	cout << "mid node :  " << *(link.getMidNode()->data)<<endl;
 }
+
+
+void testLinkUtils()
+{
+	LinkUtils<int> lu;
+	LinkNode<int> *head = new LinkNode<int>();
+	getSimpleLink(head);
+	cout << "before reverse" << endl;
+	lu.coutLink(head);
+	cout << "after reverse" << endl;
+	head = lu.reverse(head);
+	lu.coutLink(head);
+} 
 int  main()
 {
-	testLinkList();
-	//testHeap();
+
+	testLinkUtils();
 	system("pause");
 	return 0;
 }
