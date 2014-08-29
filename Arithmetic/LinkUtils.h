@@ -12,7 +12,7 @@ struct LinkCircleInfo
 	//出现环路节点坐标
 	int index;
 	//环路节点地址
-	T *adress;
+	LinkNode<T> *adress;
 	//环长度
 	int length;
 	LinkCircleInfo();
@@ -24,7 +24,7 @@ public:
 	//转置
 	LinkNode<T>* reverse(LinkNode<T> *head);
 	//环路判断
-	bool isHasCircle(LinkNode<T> *head, bool isNeedIndex, bool isNessLength);
+	bool isHasCircle(LinkNode<T> *head, LinkCircleInfo<T> *info, bool needIndex, bool needCircleLength);
 	//
 	void coutLink(LinkNode<T> *head);
 

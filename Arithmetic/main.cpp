@@ -108,7 +108,7 @@ void testBFS()
 	tree.BFS(node);
 	delete[] node;
 }
-void getSimpleLink(LinkNode<int> *head)
+void getSimpleLink(LinkNode<int> *head,bool hasCircle)
 {
 	
 	static MyLinkList<int> link(head);
@@ -120,6 +120,11 @@ void getSimpleLink(LinkNode<int> *head)
 		}
 		link.insertData(link.getFoot(), &arrayList[i]);
 	}
+	if (hasCircle)
+	{
+		link.getFoot()->next = link.getNode(4);
+	}
+//	link.countLink();
 
 }
 //≤‚ ‘¡¥±Ì
@@ -148,12 +153,19 @@ void testLinkUtils()
 {
 	LinkUtils<int> lu;
 	LinkNode<int> *head = new LinkNode<int>();
-	getSimpleLink(head);
-	cout << "before reverse" << endl;
-	lu.coutLink(head);
-	cout << "after reverse" << endl;
-	head = lu.reverse(head);
-	lu.coutLink(head);
+	getSimpleLink(head,true);
+	LinkCircleInfo<int> *info = new LinkCircleInfo<int>();
+	bool hasCircle=lu.isHasCircle(head, info, true, true);
+	cout << "hascircle : " << hasCircle << endl;
+	if (hasCircle)
+	{
+		cout << "circle point index : " << info->index << endl;
+		cout << "circle point adress : " << info->adress << endl;
+		cout << "circle point data : " << *(info->adress->data) << endl;
+		cout << "cirlce length : " << info->length<<endl;
+
+	}
+	delete(info);
 } 
 int  main()
 {
